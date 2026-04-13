@@ -54,14 +54,6 @@ LetMeFit/
     └── fitness.js          # Logic bridging the fitness tracker UI and storage
 ```
 
-## 📸 Screenshots
-
-*(Add your screenshots here by replacing the placeholder links below!)*
-
-| Dashboard Overview | Meal Tracking | Fitness Logging |
-|:---:|:---:|:---:|
-| <img src="https://via.placeholder.com/400x300?text=Dashboard+Screenshot" alt="Dashboard View"> | <img src="https://via.placeholder.com/400x300?text=Calorie+Screenshot" alt="Calorie Tracker View"> | <img src="https://via.placeholder.com/400x300?text=Fitness+Screenshot" alt="Fitness Tracker View"> |
-
 ## 🔮 Future Improvements
 
 While LetMeFit is fully functional and ready to use, here are some ideas for future scaling:
