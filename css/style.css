@@ -24,6 +24,108 @@ body {
   line-height: 1.6;
 }
 
+/* Wizard Styles */
+.wizard-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.wizard-steps::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border-color);
+  z-index: 1;
+}
+.step-indicator {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: var(--border-color);
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  z-index: 2;
+  position: relative;
+  transition: var(--transition);
+}
+.step-indicator.active {
+  background: var(--primary-color);
+  color: #fff;
+  box-shadow: 0 0 0 5px rgba(76, 175, 80, 0.2);
+}
+
+.wizard-panel {
+  display: none;
+}
+.wizard-panel.active {
+  display: block;
+}
+
+/* BMI Gradient Bar */
+.bmi-bar-container {
+  margin: 2rem 0;
+  position: relative;
+}
+.bmi-gradient {
+  height: 15px;
+  width: 100%;
+  border-radius: 10px;
+  background: linear-gradient(to right, #2196f3 0%, #2196f3 28%, #4caf50 28%, #4caf50 50%, #ff9800 50%, #ff9800 66%, #f44336 66%, #f44336 100%);
+}
+.bmi-pointer {
+  position: absolute;
+  top: -10px;
+  width: 4px;
+  height: 35px;
+  background: #333;
+  border-radius: 2px;
+  transform: translateX(-50%);
+  transition: left 0.5s ease-out;
+}
+.bmi-pointer::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -4px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #333 transparent;
+}
+
+/* Goal Cards */
+.goal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.goal-card {
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: left;
+}
+.goal-card:hover {
+  border-color: #aaa;
+}
+.goal-card.selected {
+  border-color: var(--primary-color);
+  background-color: #f1f8e9;
+}
+.goal-card h4 {
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
 /* Navbar */
 .navbar {
   display: flex;

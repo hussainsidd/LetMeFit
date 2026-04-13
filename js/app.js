@@ -9,4 +9,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Intercepting Get Started Router
+  const getStartedBtn = document.getElementById('get-started-btn');
+  if (getStartedBtn) {
+    getStartedBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Ensure storage.js functions are loaded
+      if (typeof getUserProfile === 'function') {
+        const prof = getUserProfile();
+        if (prof && prof.selectedGoal) {
+          window.location.href = 'dashboard.html';
+        } else {
+          window.location.href = 'profile-setup.html';
+        }
+      } else {
+        // Fallback
+        window.location.href = 'profile-setup.html';
+      }
+    });
+  }
 });

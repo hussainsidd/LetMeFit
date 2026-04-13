@@ -2,6 +2,8 @@
 
 const MEALS_KEY = "letmefit_meals";
 const ACTIVITIES_KEY = "letmefit_activities";
+const GOAL_KEY = "letmefit_goal";
+const PROFILE_KEY = "letmefit_profile";
 
 /**
  * Returns today's date formatted as "YYYY-MM-DD"
@@ -27,45 +29,28 @@ function _getAll(key) {
   }
 }
 
-/**
- * Saves a meal object to localStorage
- * Expected meal format: {name, calories, mealType, date}
- */
 function saveMeal(meal) {
   const meals = _getAll(MEALS_KEY);
   meals.push(meal);
   localStorage.setItem(MEALS_KEY, JSON.stringify(meals));
 }
 
-/**
- * Returns an array of meal objects for a given date ("YYYY-MM-DD")
- */
 function getMeals(date) {
   const meals = _getAll(MEALS_KEY);
   return meals.filter(m => m.date === date);
 }
 
-/**
- * Saves an activity object to localStorage
- * Expected activity format: {name, duration, caloriesBurned, date}
- */
 function saveActivity(activity) {
   const activities = _getAll(ACTIVITIES_KEY);
   activities.push(activity);
   localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(activities));
 }
 
-/**
- * Returns an array of activity objects for a given date ("YYYY-MM-DD")
- */
 function getActivities(date) {
   const activities = _getAll(ACTIVITIES_KEY);
   return activities.filter(a => a.date === date);
 }
 
-/**
- * Removes all meal and activity entries for the given date
- */
 function clearDay(date) {
   const meals = _getAll(MEALS_KEY);
   const updatedMeals = meals.filter(m => m.date !== date);
@@ -74,4 +59,49 @@ function clearDay(date) {
   const activities = _getAll(ACTIVITIES_KEY);
   const updatedActivities = activities.filter(a => a.date !== date);
   localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(updatedActivities));
+}
+
+/**
+ * Gets entire JSON User Profile
+ */
+function getUserProfile() {
+  try {
+    const data = localStorage.getItem(PROFILE_KEY);
+    return data ? JSON.parse(data) : null;
+  } catch (e) {
+    console.error("Error parsing user profile", e);
+    return null;
+  }
+}
+
+/**
+ * Overwrites entire JSON User Profile
+ */
+function saveUserProfile(profileObj) {
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(profileObj));
+}
+
+/**
+ * Reads from Profile explicitly if it exists, otherwise falls back natively
+ */
+function getGoal() {
+  const profile = getUserProfile();
+  if (profile && profile.selectedGoal && profile.selectedGoal.calories) {
+    return profile.selectedGoal.calories;
+  }
+  const fallback = localStorage.getItem(GOAL_KEY);
+  return fallback ? parseInt(fallback, 10) : 2000;
+}
+
+/**
+ * Writes to Profile directly instead of creating split goal definitions
+ */
+function saveGoal(amount) {
+  const profile = getUserProfile();
+  if (profile && profile.selectedGoal) {
+    profile.selectedGoal.calories = amount;
+    saveUserProfile(profile);
+  } else {
+    localStorage.setItem(GOAL_KEY, amount.toString());
+  }
 }

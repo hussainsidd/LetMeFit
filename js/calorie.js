@@ -5,7 +5,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const calorieProgress = document.getElementById('calorie-progress');
   const errorEl = document.getElementById('calorie-error');
   
-  const DAILY_GOAL = 2000;
+  // Goal UI elements
+  const calorieGoalDisplay = document.getElementById('calorie-goal-display');
+  const editGoalBtn = document.getElementById('edit-goal-btn');
+  const goalEditContainer = document.getElementById('goal-edit-container');
+  const newGoalInput = document.getElementById('new-goal');
+  const saveGoalBtn = document.getElementById('save-goal-btn');
+  
+  let currentGoal = getGoal();
+
+  function updateGoalUI() {
+    calorieGoalDisplay.textContent = currentGoal;
+    renderMeals(); // Re-render to update the progress bar percentages based on the new goal
+  }
+
+  editGoalBtn.addEventListener('click', () => {
+    newGoalInput.value = currentGoal;
+    goalEditContainer.style.display = goalEditContainer.style.display === 'block' ? 'none' : 'block';
+  });
+
+  saveGoalBtn.addEventListener('click', () => {
+    const newVal = parseInt(newGoalInput.value, 10);
+    if (!isNaN(newVal) && newVal > 0) {
+      currentGoal = newVal;
+      saveGoal(newVal);
+      goalEditContainer.style.display = 'none';
+      updateGoalUI();
+    } else {
+      alert('Please enter a valid positive number for your goal.');
+    }
+  });
 
   function renderMeals() {
     const today = getTodayDate();
@@ -54,11 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function updateSummary(total) {
     totalCaloriesEl.textContent = total;
-    let percentage = (total / DAILY_GOAL) * 100;
+    let percentage = (total / currentGoal) * 100;
     if (percentage > 100) percentage = 100;
     calorieProgress.style.width = `${percentage}%`;
 
-    if (total > DAILY_GOAL) {
+    if (total > currentGoal) {
       calorieProgress.classList.add('danger');
       totalCaloriesEl.classList.add('text-danger');
     } else {
@@ -81,22 +110,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const caloriesInput = document.getElementById('calories').value;
     const mealTypeInput = document.getElementById('meal-type').value;
 
-    // Validation
     if (!nameInput || !caloriesInput || !mealTypeInput) {
-      errorEl.textContent = 'Please fill out all fields.';
-      errorEl.classList.add('show');
+      if (errorEl) {
+        errorEl.textContent = 'Please fill out all fields.';
+        errorEl.classList.add('show');
+      } else {
+        alert('Please fill out all fields.');
+      }
       return;
     }
     
     if (isNaN(caloriesInput) || parseInt(caloriesInput, 10) <= 0) {
-      errorEl.textContent = 'Please enter a valid positive number for calories.';
-      errorEl.classList.add('show');
+      if (errorEl) {
+        errorEl.textContent = 'Please enter a valid positive number for calories.';
+        errorEl.classList.add('show');
+      } else {
+        alert('Please enter a valid positive number for calories.');
+      }
       return;
     }
 
-    // Clear Error on Success
-    errorEl.classList.remove('show');
-    errorEl.textContent = '';
+    if (errorEl) {
+      errorEl.classList.remove('show');
+      errorEl.textContent = '';
+    }
 
     const newMeal = {
       id: Date.now().toString(),
@@ -113,5 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderMeals();
   });
 
+  // Initialize
+  calorieGoalDisplay.textContent = currentGoal;
   renderMeals();
 });

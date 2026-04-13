@@ -8,9 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const activityLogEl = document.getElementById('activity-log');
   const motivationEl = document.getElementById('motivational-message');
   
-  const DAILY_GOAL = 2000;
+  const DAILY_GOAL = getGoal();
 
   function initDashboard() {
+    document.getElementById('dashboard-goal-display').textContent = DAILY_GOAL;
     const today = getTodayDate();
     
     // Format date nicely (e.g., Apr 13, 2026)

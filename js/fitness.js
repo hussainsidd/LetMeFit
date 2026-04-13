@@ -81,20 +81,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validation
     if (!nameInput || !typeInput || !durationInputValue) {
-      errorEl.textContent = 'Please fill out all fields.';
-      errorEl.classList.add('show');
+      if (errorEl) {
+        errorEl.textContent = 'Please fill out all fields.';
+        errorEl.classList.add('show');
+      } else {
+        alert('Please fill out all fields.');
+      }
       return;
     }
     
     if (isNaN(durationInput) || durationInput <= 0) {
-      errorEl.textContent = 'Please enter a valid positive number for duration.';
-      errorEl.classList.add('show');
+      if (errorEl) {
+        errorEl.textContent = 'Please enter a valid positive number for duration.';
+        errorEl.classList.add('show');
+      } else {
+        alert('Please enter a valid positive number for duration.');
+      }
       return;
     }
 
     // Clear Error on Success
-    errorEl.classList.remove('show');
-    errorEl.textContent = '';
+    if (errorEl) {
+      errorEl.classList.remove('show');
+      errorEl.textContent = '';
+    }
 
     const estimatedCalories = calculateCalories(typeInput, durationInput);
 

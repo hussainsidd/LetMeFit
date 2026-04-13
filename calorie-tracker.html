@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,18 +16,29 @@
       padding: 0.2rem;
       transition: var(--transition);
     }
-
     .delete-btn:hover {
       color: #d32f2f;
       transform: scale(1.1);
     }
-
     .meal-list {
       margin-top: 1.5rem;
     }
+    .goal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    #goal-edit-container {
+      display: none;
+      background-color: var(--light-bg);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border-color);
+    }
   </style>
 </head>
-
 <body>
   <nav class="navbar">
     <div class="logo">
@@ -47,18 +57,33 @@
 
   <main class="container">
     <h2>Calorie Tracker</h2>
-    <p>Log your meals and track your caloric intake against your daily goal.</p>
-
+    <p>Log your meals and track your caloric intake against your personal daily goal.</p>
+    
     <div class="card" style="margin-top: 1.5rem;">
-      <div class="summary-bar">
-        <span>Total Calories Today: <span id="total-calories">0</span> kcal</span>
-        <span>Goal: 2000 kcal</span>
+      <div class="goal-header">
+        <div class="summary-bar" style="width: 100%; margin-bottom: 0px;">
+          <span>Total Calories Today: <span id="total-calories">0</span> kcal</span>
+          <span>Goal: <span id="calorie-goal-display">2000</span> kcal 
+            <button id="edit-goal-btn" class="btn btn-outline" title="Edit Goal" style="padding: 0.2rem 0.6rem; font-size: 0.8rem; margin-left: 0.5rem;">
+              <i class="fas fa-edit"></i>
+            </button>
+          </span>
+        </div>
       </div>
+      
+      <div id="goal-edit-container">
+        <label for="new-goal" style="font-weight: 500; font-size: 0.95rem; display: block; margin-bottom: 0.5rem;">Set New Daily Calorie Goal:</label>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="number" id="new-goal" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; flex-grow: 1;" min="100">
+          <button id="save-goal-btn" class="btn" style="padding: 0.5rem 1.5rem;">Save</button>
+        </div>
+      </div>
+
       <div class="progress-container">
         <div class="progress-bar" id="calorie-progress"></div>
       </div>
     </div>
-
+    
     <div class="tracker-grid">
       <div class="card">
         <h3>Add Meal</h3>
@@ -86,8 +111,10 @@
 
       <div class="card">
         <h3>Today's Log</h3>
-        <div class="meal-list" id="meal-list">
-          <!-- Meal items will be injected here by JS -->
+        <div class="list-container">
+          <div class="meal-list" id="meal-list">
+            <!-- Meal items will be injected here by JS -->
+          </div>
         </div>
       </div>
     </div>
@@ -97,5 +124,4 @@
   <script src="js/app.js"></script>
   <script src="js/calorie.js"></script>
 </body>
-
 </html>
