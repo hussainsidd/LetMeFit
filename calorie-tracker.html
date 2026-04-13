@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Tracker - LetMeFit</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .delete-btn {
+      color: #f44336;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 0.2rem;
+      transition: var(--transition);
+    }
+
+    .delete-btn:hover {
+      color: #d32f2f;
+      transform: scale(1.1);
+    }
+
+    .meal-list {
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html"><i class="fas fa-leaf"></i> LetMeFit</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="calorie-tracker.html" class="active">Calorie Tracker</a></li>
+      <li><a href="fitness-tracker.html">Fitness Tracker</a></li>
+    </ul>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h2>Calorie Tracker</h2>
+    <p>Log your meals and track your caloric intake against your daily goal.</p>
+
+    <div class="card" style="margin-top: 1.5rem;">
+      <div class="summary-bar">
+        <span>Total Calories Today: <span id="total-calories">0</span> kcal</span>
+        <span>Goal: 2000 kcal</span>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="calorie-progress"></div>
+      </div>
+    </div>
+
+    <div class="tracker-grid">
+      <div class="card">
+        <h3>Add Meal</h3>
+        <form id="calorie-form" style="margin-top: 1.5rem;">
+          <div class="form-group">
+            <label for="food-name">Meal Name</label>
+            <input type="text" id="food-name" placeholder="e.g. Oatmeal with berries" required>
+          </div>
+          <div class="form-group">
+            <label for="calories">Calories</label>
+            <input type="number" id="calories" placeholder="e.g. 350" required min="1">
+          </div>
+          <div class="form-group">
+            <label for="meal-type">Meal Type</label>
+            <select id="meal-type" required>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Lunch">Lunch</option>
+              <option value="Dinner">Dinner</option>
+              <option value="Snack">Snack</option>
+            </select>
+          </div>
+          <button type="submit" class="btn" style="width: 100%;">Add Food</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Today's Log</h3>
+        <div class="meal-list" id="meal-list">
+          <!-- Meal items will be injected here by JS -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/calorie.js"></script>
+</body>
+
+</html>

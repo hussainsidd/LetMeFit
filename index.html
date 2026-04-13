@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LetMeFit - Track Your Calories. Live Better.</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .features {
+      padding: 5rem 5%;
+      background-color: var(--light-bg);
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+      color: var(--text-color);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .feature-card p {
+      color: #666;
+    }
+
+    footer {
+      background-color: #2c3e50;
+      color: #120d0d;
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="index.html"><i class="fas fa-leaf"></i> LetMeFit</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="calorie-tracker.html">Calorie Tracker</a></li>
+      <li><a href="fitness-tracker.html">Fitness Tracker</a></li>
+    </ul>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Track Your Calories. <br><span>Live Better.</span></h1>
+      <p>Achieve your health goals with LetMeFit. We provide the simplest tools to monitor your nutrition and exercise
+        everyday.</p>
+      <div class="hero-btns" style="margin-top: 1.5rem;">
+        <a href="dashboard.html" class="btn">Get Started</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Why Choose LetMeFit?</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🥗</div>
+        <h3>Calorie Tracking</h3>
+        <p>Easily log your daily meals and instantly see how many calories you've consumed.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏃</div>
+        <h3>Fitness Logging</h3>
+        <p>Record your workouts and estimate calories burned accurately using standard MET values.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Daily Dashboard</h3>
+        <p>View your net calories, activity breakdown, and goal progress in a single unified view.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built with ❤️ by LetMeFit &copy; 2026</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
